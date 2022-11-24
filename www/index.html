@@ -41,6 +41,24 @@
         })
     }
 
+    function searchLevelLT() {
+      let TestDataClass = ncmb.DataStore(db);
+      let level = parseInt($("#level").val());
+      TestDataClass.lessThan("level", level).fetchAll()
+        .then(function(results) {
+          showResults(results);
+        })
+    }
+
+    function searchLevelGT() {
+      let TestDataClass = ncmb.DataStore(db);
+      let level = parseInt($("#level").val());
+      TestDataClass.greaterThan("level", level).fetchAll()
+        .then(function(results) {
+          showResults(results);
+        })
+    }
+
     function showResults(results) {
       // テーブルのヘッダを生成
       let msg = "<table><tr><th>name</th><th>Lvl</th><th>attack</th><th>defence</th></tr>";
@@ -70,13 +88,29 @@
     <label for="level">level:</label>
     <input id="level" type="number" placeholder="monster level">
   </div>
+  <div>
+    <label for="attack">attack:</label>
+    <input id="attack" type="number" placeholder="monster attack">
+  </div>
+  <div>
+    <label for="defence">defence:</label>
+    <input id="defence" type="number" placeholder="monster defence">
+  </div>
   <div id="button">
     <button class="btn" onclick="fetchAll()">Fetch All</button>
     <button class="btn" onclick="searchName()">Name</button>
-  </div>
-  <div id="button">
+    <br>
     <button class="btn" onclick="searchLevelLT()">Level &lt;</button>
     <button class="btn" onclick="searchLevel()">Level</button>
+    <button class="btn" onclick="searchLevelGT()">Level &gt;</button>
+    <br>
+    <button class="btn" onclick="searchAttackLE()">Attack &le;</button>
+    <button class="btn" onclick="searchAttack()">Attack</button>
+    <button class="btn" onclick="searchAttackGE()">Attack &ge;</button>
+    <br>
+    <button class="btn" onclick="searchDefenceLE()">Defence &le;</button>
+    <button class="btn" onclick="searchDefence()">Defence</button>
+    <button class="btn" onclick="searchDefenceGE()">Defence &ge;</button>
   </div>
   <div id="message">message area</div>
 </body>
